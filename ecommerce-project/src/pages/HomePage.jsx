@@ -6,25 +6,19 @@ import './HomePage.css';
 
 
 
-export function HomePage() {
+export function HomePage({cart=[]}) {
  
  const [products,setProducts] =useState([]);
 
- const [cart,setCart]=useState([])
+//  const [cart,setCart]=useState([])
 
   useEffect(()=>{
     axios.get('/api/products')
       .then((response)=>{
-
       setProducts(response.data);
-      console.log(response.data)
+      console.log(response.data);
     });
 
-    axios.get('/api/cart-items')
-    .then((response)=>{
-      setCart(response.data)
-      console.log(response.data)
-    });
   },[]);
 
   return (
