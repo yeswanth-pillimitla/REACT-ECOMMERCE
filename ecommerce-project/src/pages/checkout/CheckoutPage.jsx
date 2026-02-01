@@ -8,7 +8,7 @@ import {PaymentSummary} from './PaymentSummary'
 // import { formatMoney } from '../../utils/money';
 
 
-export function CheckoutPage({ cart=[],loadCart }) {
+export function CheckoutPage({ cart=[  ],loadCart }) {
   const [deliveryOptions,setdeliveryOptions] = useState([]);
 
   const[paymentSummary,setpaymentSummary]=useState(null)
