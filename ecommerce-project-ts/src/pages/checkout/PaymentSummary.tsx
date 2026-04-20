@@ -1,9 +1,14 @@
 import { formatMoney } from '../../utils/money';
-import {useNavigate} from 'react-router';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
+import type { PaymentSummary as PaymentSummaryType } from '../../types';
 
+interface PaymentSummaryProps {
+  paymentSummary: PaymentSummaryType | null;
+  loadCart: () => Promise<void>;
+}
 
-export function PaymentSummary({paymentSummary,loadCart}){
+export function PaymentSummary({ paymentSummary, loadCart }: PaymentSummaryProps) {
   
   const navigate =useNavigate();
 

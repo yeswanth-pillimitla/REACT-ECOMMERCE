@@ -1,16 +1,17 @@
 import axios from 'axios';
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from '../../components/Header';
-// import { products } from '../../starting-code/data/products';
-// import { formatMoney } from '../../utils/money';
-import {ProductsGrid} from './ProductsGrid';
+import { ProductsGrid } from './ProductsGrid';
+import type { CartItem, Product } from '../../types';
 import './HomePage.css';
 
+interface HomePageProps {
+  cart: CartItem[];
+  loadCart: () => Promise<void>;
+}
 
-
-export function HomePage({cart=[],loadCart}) {
- 
- const [products,setProducts] =useState([]);
+export function HomePage({ cart = [], loadCart }: HomePageProps) {
+  const [products, setProducts] = useState<Product[]>([]);
 
 //  const [cart,setCart]=useState([])
 

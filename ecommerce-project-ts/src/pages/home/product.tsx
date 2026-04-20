@@ -1,22 +1,29 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { formatMoney } from '../../utils/money';
 import axios from 'axios';
+import type { Product as ProductType } from '../../types';
 
-export function Product({product,loadCart}) {
-  const[quantity,setquantity]=useState(1);
-  
-  const addToCart=async () => {
-          await axios.post('/api/cart-items', {
-            productId: product.id,
-            quantity: quantity
-          })
-          await loadCart();
-        }
+interface ProductProps {
+  product: ProductType;
+  loadCart: () => Promise<void>;
+}
 
-  const SelectQuantity=(event) => {
-          const quantitySelected = Number(event.target.value);
-          setquantity(quantitySelected);
-        }
+export function Product({ product, loadCart }: ProductProps) {
+  const [quantity, setquantity] = useState(1);
+
+  const addToCart = async () => {
+    await axios.post('/api/cart-items', {
+      productId: product.id,
+      quantity: quantity
+    })
+    await loadCart();
+  }
+
+  const SelectQuantity = (event: ChangeEvent<HTMLSelectElement>) => {
+    const quantitySelected = Number(event.target.value);
+    setquantity(quantitySelected);
+  }
 
   return (
     <div className="product-container">

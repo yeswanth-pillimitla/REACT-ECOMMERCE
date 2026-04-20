@@ -2,16 +2,19 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './CheckoutPage.css';
 import './Checkout-header.css';
-import {OrderSummary} from './OrderSummary';
-import {PaymentSummary} from './PaymentSummary'
-// import dayjs from 'dayjs';
-// import { formatMoney } from '../../utils/money';
+import { OrderSummary } from './OrderSummary';
+import { PaymentSummary } from './PaymentSummary'
+import type { CartItem, DeliveryOption, PaymentSummary as PaymentSummaryType } from '../../types';
 
+interface CheckoutPageProps {
+  cart: CartItem[];
+  loadCart: () => Promise<void>;
+}
 
-export function CheckoutPage({ cart=[  ],loadCart }) {
-  const [deliveryOptions,setdeliveryOptions] = useState([]);
+export function CheckoutPage({ cart = [], loadCart }: CheckoutPageProps) {
+  const [deliveryOptions, setdeliveryOptions] = useState<DeliveryOption[]>([]);
 
-  const[paymentSummary,setpaymentSummary]=useState(null)
+  const [paymentSummary, setpaymentSummary] = useState<PaymentSummaryType | null>(null)
 
   useEffect(() => {
     const fetchCheckoutData=async()=>{

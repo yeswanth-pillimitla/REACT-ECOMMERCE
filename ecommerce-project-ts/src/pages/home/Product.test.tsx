@@ -1,21 +1,15 @@
+/// <reference types="@testing-library/jest-dom" />
 import { it, expect, describe, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Product } from './product';
 import userEvent from '@testing-library/user-event'
-import axios from 'axios';
+import type { Product as ProductType } from '../../types';
 
-vi.mock('axios', () => {
-  return {
-    default: {
-      post: vi.fn().mockResolvedValue({ data: {} }),
-      get: vi.fn().mockResolvedValue({ data: {} })
-    }
-  }
-});
+vi.mock('axios');
 
 describe('Product component', () => {
   it('displays the product details correctly', () => {
-    const product = {
+    const product: ProductType = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
       name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -46,8 +40,8 @@ describe('Product component', () => {
   });
 
 
-  it('displays the product details correctly', async() => {
-    const product = {
+  it('displays the product details correctly', async () => {
+    const product: ProductType = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
       name: "Black and Gray Athletic Cotton Socks - 6 Pairs",

@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { useState, useEffect,Fragment} from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { Header } from '../../components/Header';
 import dayjs from 'dayjs';
 import { formatMoney } from '../../utils/money';
+import type { CartItem, Order } from '../../types';
 import './OrderPage.css';
 
+interface OrderPageProps {
+  cart: CartItem[];
+}
 
-export function OrderPage({ cart = [] }) {
-
-  const [orders, setorders] = useState([]);
+export function OrderPage({ cart = [] }: OrderPageProps) {
+  const [orders, setorders] = useState<Order[]>([]);
 
   useEffect(() => {
     axios.get('/api/orders?expand=products')

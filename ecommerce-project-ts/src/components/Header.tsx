@@ -1,12 +1,9 @@
-import {Link} from 'react-router'
+import { Link } from 'react-router'
+import type { CartItem } from '../types';
 import './header.css';
 
-type HeaderProps={
-  cart:{
-    productId:string;
-    quantity:number;
-    deliveryOptionId:string;
-  }[];
+interface HeaderProps {
+  cart?: CartItem[];
 }
 export function Header({cart = []}:HeaderProps) {
   let totalQuantity=0;

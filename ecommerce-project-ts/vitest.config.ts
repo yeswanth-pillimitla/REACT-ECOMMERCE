@@ -6,6 +6,6 @@ export default defineConfig({
   test: {
     environment: 'jsdom',//compoenst test or integration tests to work
     globals: true,
-    setupFiles: './setupTests.js',
+    setupFiles: './setupTests.ts',
   }
 });

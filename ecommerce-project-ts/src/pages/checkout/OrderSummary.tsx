@@ -1,9 +1,16 @@
 import dayjs from 'dayjs';
 import axios from 'axios';
 import { formatMoney } from '../../utils/money';
-import {DeliveryOptions} from './DeliveryOptions';
+import { DeliveryOptions } from './DeliveryOptions';
+import type { CartItem, DeliveryOption } from '../../types';
 
-export function OrderSummary({cart,deliveryOptions,loadCart}){
+interface OrderSummaryProps {
+  cart: CartItem[];
+  deliveryOptions: DeliveryOption[];
+  loadCart: () => Promise<void>;
+}
+
+export function OrderSummary({ cart, deliveryOptions, loadCart }: OrderSummaryProps) {
   return(
               <div className="order-summary">
 
@@ -24,6 +31,9 @@ export function OrderSummary({cart,deliveryOptions,loadCart}){
                 await loadCart();
               }
 
+              if (!selectedDeliveryOption || !cartItem.product) {
+                return null;
+              }
 
               return (
                 <div key={cartItem.productId} className="cart-item-container">
